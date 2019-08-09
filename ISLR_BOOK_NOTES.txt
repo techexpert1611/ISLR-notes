@@ -1,0 +1,115 @@
+=====================================================================
+=====================================================================
+|||||||||||||||||||||||||ISLR -  Book Noted||||||||||||||||||||||||||
+=====================================================================
+=====================================================================
+
+
+### Chapter 1: Introduction 
+	=> Gene Expression Data
+			-> Gene expression is the process by which information from a gene is used in the synthesis of a functional gene product. Read More(https://en.wikipedia.org/wiki/Gene_expression)
+	#### NCI 60 -> is the data which has 
+				a) 6830 Gene Expressions
+				b) 64 cancer cell lines.
+				
+				From this they found the 14 different types of cancer.
+	
+	=> How and who contributed for statistics(specially for ML)
+		1) 	Legendre and Gauss published papers on the method of least squares, which implemented the earliest form of what is now known as LINEAR REGRESSION. 
+				[Beginning of 19th Century].
+				** LINEAR REGRESSION **
+					-> The approach was first successfully applied to problems in astronomy
+					-> Linear regression is used for predicting quantitative values, such as an individual’s salary.
+					-> In order to predict qualitative values, such as whether a patient survives or dies, or whether the stock market increases or decreases
+
+		2) 	Fisher proposed LINEAR DISCRIMANT ANALYSIS
+				[In the 1936s]
+		
+		3) 	various authors put forth an alternative approach, LOGISTIC REGRESSION.
+				[In the 1940s]
+			
+		4) 	Nelder and Wedderburn coined the term GENERALIZED LINEAR MODELS for an entire class of statistical learning methods that include both LINEAR  and LOGISTIC REGRESSION as special cases.
+				[In the early 1970s]
+				** GENERALIZED LINEAR MODELS **
+					-> LINEAR
+					-> LOGISTIC REGRESSION
+				
+		5) 	Breiman, Friedman, Olshen and Stone introduced CLASSIFICATION and REGRESSION TREES, and were among the first to demonstrate the power of a detailed practical implementation of a method, 
+				including CROSS-VALIDATION for model selection.
+				[In mid 1980s]
+				-> CLASSIFICATION
+				-> REGRESSION TREES
+				-> CROSS-VALIDATION
+				
+		
+	=> ISLR is based on the following four premises.
+		1. Many statistical learning methods are relevant and useful in a wide range of academic and non-academic disciplines, beyond just the sta tistical sciences. 
+			-> We believe that many contemporary statistical learning procedures should, and will, become as widely available and used as is currently the case for classical methods such as linear regression. As a result, rather than attempting to consider every possible approach (an impossible task), we have concentrated on presenting the methods that we believe are most widely applicable. 
+		2. Statistical learning should not be viewed as a series of black boxes. 
+			-> No single approach will perform well in all possible applications. Without understanding all of the cogs inside the box, or the interaction between those cogs, it is impossible to select the best box. Hence, we have attempted to carefully describe the model, intuition, assump- tions, and trade-offs behind each of the methods that we consider.
+		3. While it is important to know what job is performed by each cog, it is not necessary to have the skills to construct the machine inside the box! 
+			->Thus, we have minimized discussion of technical details related to fitting procedures and theoretical properties. We assume that the reader is comfortable with basic mathematical concepts, but we do not assume a graduate degree in the mathematical sciences. For instance, we have almost completely avoided the use of matrix algebra, and it is possible to understand the entire book without a detailed knowledge of matrices and vectors.
+		4. We presume that the reader is interested in applying statistical learning methods to real-world problems. 
+			-> In order to facilitate this, as well as to motivate the techniques discussed, we have devoted a section within each chapter to R computer labs. In each lab, we walk the reader through a realistic application of the methods considered in that chapter. When we have taught this material in our courses, we have allocated roughly one-third of classroom time to working through the labs, and we have found them to be extremely useful. Many of the less computationally-oriented students who were ini- tially intimidated by R ’s command level interface got the hang of things over the course of the quarter or semester. We have used R because it is freely available and is powerful enough to implement all of the methods discussed in the book. It also has optional packages that can be downloaded to implement literally thousands of addi- tional methods. Most importantly, R is the language of choice for academic statisticians, and new approaches often become available inR years before they are implemented in commercial packages. How- ever, the labs in ISL are self-contained, and can be skipped if thereader wishes to use a different software package or does not wish toapply the methods discussed to real-world problems.
+		
+		
+		#### Notation and Simple Matrix Algebra
+		n = number of distinct data points, or observations, in our sample.
+		p  = number of variables that are available for use in making predictions.
+			For example, the Wage data set consists of 12 variables for 3,000 people, so we have 
+				n = 3,000 observations and
+				p = 12 variables (such as year , age , sex , and more).
+				
+	=> Data Sets Used in Labs and Exercises
+		->ISLR package available on the book website contains a number of data sets that are required in order to perform the labs and exercises associated with this book
+				ISLR package Link: http://cran.r-project.org/web/packages/ISLR/index.html
+		-> One other data set is contained in the MASS library, and yet another is part of the base R distribution
+				MASS Package Link: https://cran.r-project.org/web/packages/MASS/index.html
+				
+	=> Book Website Link: www.StatLearning.com
+		=============================================================
+			Name			Description
+		=============================================================
+			Auto				Gas mileage, horsepower, and other information for cars.
+			Boston			Housing values and other information about Boston suburbs.
+			Caravan		Information about individuals offered caravan insurance.
+			Carseats		Information about car seat sales in 400 stores.
+			College			Demographic characteristics, tuition, and more for USA colleges.
+			Default			Customer default records for a credit card company.
+			Hitters			Records and salaries for baseball players.
+			Khan			Gene expression measurements for four cancer types.
+			NCI60			Gene expression measurements for 64 cancer cell lines.
+			OJ				Sales information for Citrus Hill and Minute Maid orange juice.
+			Portfolio		Past values of financial assets, for use in portfolio allocation.
+			Smarket		Daily percentage returns for S&P 500 over a 5-year period.
+			USArrests		Crime statistics per 100,000 residents in 50 states of USA.
+			Wage			Income survey data for males in central Atlantic region of USA.
+			Weekly			1,089 weekly stock market returns for 21 years.
+		=============================================================
+
+
+
+
+
+### Chapter 2: Statastical Learning
+	
+	#### 2.1 What Is Statistical Learning?
+		
+		->In order to motivate our study of statistical learning, we begin with a simple example. 
+			Example,	Suppose that we are statistical consultants hired by a client to provide advice on how to improve sales of a particular product. 
+							The Advertising data set consists of the sales of that product in 200 different markets, along with advertising budgets for the 
+							product in each of those markets for three different media: TV , radio , and newspaper. 
+							The data are displayed in Figure 2.1. It is not possible for our client to directly increase sales of the product. 
+							On the other hand, they can control the advertising expenditure in each of the three media. 
+							Therefore, if we determine that there is an association between advertising and sales, then we can instruct our client to adjust advertising budgets, thereby indirectly increasing sales.
+							->In other words, our goal is to develop an accurate model that can be used to predict SALES on the basis of the THREE MEDIA BUDGETS.
+		
+		suppose that we observe a quantitative response Y and p different predictors, X1 , X2, . . . , Xp . 
+		We assume that there is some relationship between Y and X = (X1, X2 , . . . ,Xp), 
+		which can be written in the very general form
+						Y = f (X) + 
+						[~ Y = m(X) + b]
+						
+							f 	is some fixed but unknown function of X 1 , . . . , X p , 
+							 is a random error term, 
+							[Note: which is independent of X and has mean Zero ~ 0]
