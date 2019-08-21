@@ -95,7 +95,7 @@
 	
 	#### 2.1 What Is Statistical Learning?
 		
-		->In order to motivate our study of statistical learning, we begin with a simple example. 
+		-> In order to motivate our study of statistical learning, we begin with a simple example. 
 			Example,	Suppose that we are statistical consultants hired by a client to provide advice on how to improve sales of a particular product. 
 							The Advertising data set consists of the sales of that product in 200 different markets, along with advertising budgets for the 
 							product in each of those markets for three different media: TV , radio , and newspaper. 
